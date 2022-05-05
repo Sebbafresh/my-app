@@ -16,6 +16,9 @@ export class IpInfoComponent implements OnInit {
   public ip: string = "";
   public country: string = "";
   public show: boolean = false;
+  public isLoading: boolean = false;
+  public ipInfo: any;
+  public ipInfoArray: any[];
   
 
   ngOnInit(): void {
@@ -27,6 +30,7 @@ export class IpInfoComponent implements OnInit {
   }
 
   public get(){
+    this.isLoading = true;
     this.show = !this.show;
     this.http.get<any>("https://api.ipify.org?format=json").subscribe((api) => {
       // this.info = api.country;
@@ -35,10 +39,23 @@ export class IpInfoComponent implements OnInit {
 
       this.http.get<any>("http://ip-api.com/json/" + this.ip).subscribe((api)=> {
         this.country = api.country;
+        this.ipInfo = api;
+        this.ipInfoArray = this.convertObjectsToArray(api);
         console.log(api);
+
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       });
 
     });
+  }
+
+  public convertObjectsToArray(object: any): any[]{
+    return Object.keys(object).map( index => {
+      let arrayToBeReturned = object[index];
+      return arrayToBeReturned;
+    })
   }
 
 }

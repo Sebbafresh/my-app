@@ -1,8 +1,22 @@
-<h2>IP info</h2>
-<button (click)="onClick()" >Click here 4 info</button>
-<div *ngIf="show">
+<h2 style="color:aquamarine">IP info</h2>
+<button (click)="onClick()" style="color: white; padding: 20px;">Click here 4 info</button>
+<ng-container *ngIf="isLoading else infoReady">
+    <mat-spinner mode="indeterminate" diameter="50">
+        spinner
+    </mat-spinner>
+</ng-container>
+<ng-template #infoReady>
+    <div style="color: aqua">IP Info:</div>
+    <ng-container *ngFor="let property of ipInfoArray">
+        <div style="color: aqua;">
+            {{property}}
+        </div>
+    </ng-container>
+    
+</ng-template>
+<!-- <div *ngIf="show">
     <div style="color: white">{{ip}}</div>
     <div style="color: white">{{country}}</div>
     <div style="color: white">{{parent}}</div>
-</div>
+</div> -->
 

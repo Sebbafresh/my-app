@@ -10,9 +10,7 @@ import { IpInfoComponent } from './ip-info/ip-info.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
     IpInfoComponent,
-    
   ],
   imports: [
     BrowserModule,

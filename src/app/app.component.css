@@ -4,3 +4,8 @@
     flex-direction: column;
     height: auto;
 }
+
+.knapp {
+    color: white;
+    padding: 20px;
+}
